@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Chatbot</title>
+
+<style>
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f4f6fb;
+font-family:Arial;
+}
+
+.chat{
+width:350px;
+background:white;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+overflow:hidden;
+}
+
+.header{
+background:#4a7cff;
+color:white;
+padding:12px;
+text-align:center;
+font-weight:bold;
+}
+
+.chatbox{
+height:300px;
+padding:10px;
+overflow-y:auto;
+}
+
+.user{
+text-align:right;
+margin:6px;
+}
+
+.bot{
+text-align:left;
+margin:6px;
+}
+
+.msg{
+display:inline-block;
+padding:8px 12px;
+border-radius:8px;
+}
+
+.user .msg{
+background:#4a7cff;
+color:white;
+}
+
+.bot .msg{
+background:#e6ebff;
+}
+
+.input-area{
+display:flex;
+border-top:1px solid #ddd;
+}
+
+input{
+flex:1;
+border:none;
+padding:10px;
+outline:none;
+}
+
+button{
+border:none;
+background:#4a7cff;
+color:white;
+padding:10px 15px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="chat">
+
+<div class="header">Chatbot</div>
+
+<div class="chatbox" id="chatbox"></div>
+
+<div class="input-area">
+<input type="text" id="text" placeholder="Type something here...">
+<button onclick="send()">Send</button>
+</div>
+
+</div>
+
+<script>
+
+let input=document.getElementById("text");
+
+input.addEventListener("keydown",function(e){
+if(e.key==="Enter"){
+send();
+}
+});
+
+function send(){
+
+let message=input.value.toLowerCase();
+let chatbox=document.getElementById("chatbox");
+
+if(message=="") return;
+
+chatbox.innerHTML+=`<div class="user"><span class="msg">${message}</span></div>`;
+
+let reply="I don't understand";
+
+if(message==="hello"){
+reply="hi";
+}
+
+chatbox.innerHTML+=`<div class="bot"><span class="msg">${reply}</span></div>`;
+
+input.value="";
+chatbox.scrollTop=chatbox.scrollHeight;
+
+}
+
+</script>
+
+</body>
+</html>
